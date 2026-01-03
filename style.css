@@ -39,3 +39,12 @@ main section .top{
     background-color: var(--bg-active-color);
     cursor: pointer;
 }
+
+#reset-btn{
+    background-color: var(--bg-danger-color);
+    color: var(--text-primary-color);
+}
+#download-btn{
+    background-color: var(--bg-success-color);
+    color: var(--text-primary-color);
+}
