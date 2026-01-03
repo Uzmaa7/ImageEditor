@@ -2,7 +2,7 @@
     /* these variables brings consistency in our website */
 
     /* bg-colors */
-    --bg-primary-colors: rgb(17, 17, 17);
+    --bg-primary-color: rgb(17, 17, 17);
     --bg-secondary-color: rgb(34, 34, 34);
     --bg-active-color: rgb(233, 233, 233);
 
@@ -37,10 +37,10 @@
 
     /* border-radius */
     --border-radius-sm: 0.2rem;
-    --border-radius-md: 1rem;
-    --border-radius-lg: 1.125rem;
-    --border-radius-xl: 1.25rem;
-    --border-radius-2xl: 1.5rem;
+    --border-radius-md: 0.25rem;
+    --border-radius-lg: 0.3rem;
+    --border-radius-xl: 0.4rem;
+    --border-radius-2xl: 0.5rem;
 
     /* gutter -> display:flex and grid -> space b/w elements*/
     --gutter-sm: 0.5rem;
