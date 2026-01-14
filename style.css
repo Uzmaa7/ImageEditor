@@ -115,15 +115,23 @@ main section .right .filter input{
 main section .right .filter input::-webkit-slider-thumb{
     cursor: pointer;
     appearance: none;
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     background-color: aquamarine;
     border-radius: 50%;
+    margin-top: -6px;
 }
 main section .right .filter input::-webkit-slider-runnable-track{
     background-color: var(--bg-active-color);
     height: 3px;
+    border-radius:2px
 }
-main section .right .filter input::-moz-range-track{
 
+main section .right .filters{
+    display: flex;
+    flex-direction: column;
+    gap: var(--gutter-md);
 }
+
+
+
