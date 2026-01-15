@@ -39,9 +39,9 @@ This project enables users to enhance their images directly in the browser. Feat
 5. **Download Image** – Save the edited version by clicking Download.
 
 ## 🔹 Project Structure
-/ImageEditor
-├─ assets
-│  └─ screenshot.png
+ImageEditor/
+├─ assets/
+│ └─ screenshot.png
 ├─ index.html
 ├─ style.css
 ├─ theme.css
