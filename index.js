@@ -11,19 +11,13 @@ const filters = {
         max : 200,
         unit: "%"
     },
-    exposure : {
+    saturate : {
         value : 100,
         min : 0,
         max : 200,
         unit: "%"
     },
-    saturation : {
-        value : 100,
-        min : 0,
-        max : 200,
-        unit: "%"
-    },
-    hueRotation : {
+    hueRotate  : {
         value : 0,
         min : 0,
         max : 300,
@@ -36,7 +30,7 @@ const filters = {
         unit: "px"
 
     },
-    greyscale :{
+    grayscale :{
         value : 0,
         min : 0,
         max : 100,
@@ -65,6 +59,8 @@ const filters = {
 const imageCanvas = document.querySelector("#image-canvas");
 const imageInput = document.querySelector("#image-input");
 const canvasCtx = imageCanvas.getContext("2d");
+let file = null;
+let image = null;
 
 const filterContainer = document.querySelector(".filters");
 
@@ -85,6 +81,12 @@ function createFilterElement(name , unit = "%", value , min , max){
     div.appendChild(p);
     div.appendChild(input);
 
+    input.addEventListener("input", (event) => {
+        filters[name].value = input.value
+        applyFilters()
+
+    })
+
     return div;
 }
 
@@ -97,20 +99,47 @@ Object.keys(filters).forEach(key => {
     filterContainer.appendChild(filterElement);
 })
 
+
 imageInput.addEventListener("change", (event) => {
 
-    const file = event.target.files[0];
+    file = event.target.files[0];
 
     const imagePlaceholder = document.querySelector(".placeholder");
+    imageCanvas.style.display = "block";
     imagePlaceholder.style.display = "none";
     
     const img = new Image();
     img.src = URL.createObjectURL(file);
 
     img.onload = () => {
+        image = img;
         imageCanvas.width = img.width
         imageCanvas.height = img.height;
         canvasCtx.drawImage(img,0,0)
     }
 
 })
+
+
+function applyFilters(){
+    canvasCtx.clearRect(0, 0, imageCanvas.width , imageCanvas.height)
+
+    canvasCtx.filter = `
+    brightness(${filters.brightness.value}${filters.brightness.unit})
+    contrast(${filters.contrast.value}${filters.contrast.unit})
+    saturate(${filters.saturate.value}${filters.saturate.unit})
+    hue-rotate(${filters.hueRotate.value}${filters.hueRotate.unit})
+    blur(${filters.blur.value}${filters.blur.unit})
+    grayscale(${filters.grayscale.value}${filters.grayscale.unit})
+    sepia(${filters.sepia.value}${filters.sepia.unit})
+    opacity(${filters.opacity.value}${filters.opacity.unit})
+    invert(${filters.invert.value}${filters.invert.unit})
+    `.trim()
+
+    canvasCtx.drawImage(image , 0, 0)
+}
+
+
+ 
+
+

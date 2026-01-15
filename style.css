@@ -140,9 +140,10 @@ main section .right .filters{
 }
 
 canvas{
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     max-width: 90%;
     max-height: 60vh;
+    display: none;
 }
 
 
