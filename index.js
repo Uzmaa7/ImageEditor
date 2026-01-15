@@ -62,6 +62,8 @@ const canvasCtx = imageCanvas.getContext("2d");
 let file = null;
 let image = null;
 const resetBtn = document.querySelector("#reset-btn");
+const downloadBtn = document.querySelector("#download-btn");
+
 
 const filterContainer = document.querySelector(".filters");
 
@@ -91,15 +93,17 @@ function createFilterElement(name , unit = "%", value , min , max){
     return div;
 }
 
+function createFilters(){
+    //return an array with all the keys in string form ['brightness' 'contrast'...........]
+    Object.keys(filters).forEach(key => {
 
-//return an array with all the keys in string form ['brightness' 'contrast'...........]
-Object.keys(filters).forEach(key => {
+        const filterElement = createFilterElement(key , filters[key].unit, filters[key].value,  filters[key].min, filters[key].max);
 
-    const filterElement = createFilterElement(key , filters[key].unit, filters[key].value,  filters[key].min, filters[key].max);
+        filterContainer.appendChild(filterElement);
+    })
+}
 
-    filterContainer.appendChild(filterElement);
-})
-
+createFilters();
 
 imageInput.addEventListener("change", (event) => {
 
@@ -201,5 +205,14 @@ resetBtn.addEventListener("click", () => {
         }
     }
     applyFilters();
+
+    filterContainer.innerHTML = "";
+    createFilters();
 })
 
+downloadBtn.addEventListener("click" , () => {
+    const link = document.createElement("a");
+    link.download = "edited-image.png"
+    link.href = imageCanvas.toDataURL()
+    link.click()
+})
